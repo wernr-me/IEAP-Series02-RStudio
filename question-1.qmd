@@ -1,3 +1,7 @@
 # What is a median? A mean?
 
 The **mean** is the sum of all observations divided by the number of observations. The **median** is the middle value when the observations are ordered.(1)
+
+# What is a variance? A standard deviation?
+
+The **variance** measures the dispersion of the data around the mean, while the **standard deviation** is the square root of the variance and is expressed in the same unit as the data.(1)
