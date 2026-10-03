@@ -16,3 +16,8 @@ A **normal distribution** is a symmetric, bell-shaped probability distribution i
 # What is a statistical test?
 
 A statistical test is a method used to determine whether the observed data provide enough evidence to reject a null hypothesis about a population.(1)
+
+
+# When to use a statistical test?
+
+A statistical test is used when we want to determine whether an observed difference or relationship is likely to reflect a real effect rather than random variation in the sample.(2)
