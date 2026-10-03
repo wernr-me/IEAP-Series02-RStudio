@@ -2,10 +2,82 @@
 title: "IEAP-2026 Series 02 RStudio Assignment"
 ---
 
-## Quarto
+---
+title: "IEAP-Series02-Rstudio"
+format: typst
+jupyter: python3
+---
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+# IEAP-Series02-RStudio
 
-```{r}
-1 + 1
-```
+## Authors and date
+
+**Authors:**
+DEEMUA Charles Sam, NASIR Shakir and BINCHE Werner
+
+**Date:** October 2026
+
+## GitHub repository
+
+Our public GitHub repository is available here:
+
+[IEAP-Series02-RStudio] https://github.com/wernr-me/IEAP-Series02-RStudio.git
+
+## Git workflow strategy
+
+We used a branch-based Git workflow to work collaboratively and avoid conflicts. The `main` branch contains the final version of the project. Each question was developed in a separate branch, such as `question-1`, `question-2` and `question-3`.
+
+Each team member works on the branch corresponding to their question and modifies only the relevant file in the `questions` folder. Werner did the first part, Shakir did the second part and Charles did the third part. Once the work is completed, the changes are committed with a meaningful commit message and pushed to GitHub. The branch can then be merged into `main`.
+
+This workflow allows several team members to work simultaneously while reducing the risk of conflicts in the main document.
+
+## Challenges encountered and lessons learned
+
+During the project, we encountered several challenges related to Git, GitHub, RStudio and Quarto. In particular, we had to learn how to create and manage branches, commit changes, publish branches and organize the project into separate files.
+
+We also learned that having a clear Git workflow is important when several people are working on the same project. Separating the questions into different files and branches makes collaboration easier and helps avoid merge conflicts.
+
+Another challenge was understanding how Quarto documents are organized and how the different question files can be included in the main report. This helped us better understand the connection between the source `.qmd` files and the final PDF report.
+
+## Statistical analysis and answers
+
+The complete code, statistical analyses, graphs and answers to the questions are provided in the following sections.
+
+{{< include questions/question-1.qmd >}}
+
+{{< include questions/question-2.qmd >}}
+
+{{< include questions/question-3.qmd >}}
+
+## Data sources
+
+The datasets used in this project come from the sources provided in the assignment.
+
+* Data source 1: [snore.txt]
+* Data source 2: [Results.txt]
+
+## Scientific references
+
+The scientific references used for the statistical analyses are listed below.
+
+* [Reference 1] — DOI: [DOI TO BE ADDED]
+* [Reference 2] — DOI: [DOI TO BE ADDED]
+
+## Checklist
+
+* [x] The GitHub repository is public.
+* [x] The repository contains a clear `README.md`.
+* [x] The repository contains a `LICENSE`.
+* [x] The main Quarto file is present.
+* [ ] The final PDF has been generated.
+* [x] The authors and date are included.
+* [x] A clickable link to the GitHub repository is provided.
+* [x] The Git workflow strategy is explained.
+* [x] The challenges and lessons learned are described.
+* [x] All questions have been answered.
+* [ ] The complete code is included.
+* [ ] Data sources and URLs are provided.
+* [ ] Scientific references and DOIs are provided.
+* [ ] Each question has a meaningful Git commit.
+* [ ] The final `main` branch contains the complete project.
+* [ ] The final PDF is ready to be submitted on Moodle.
