@@ -53,8 +53,8 @@ The complete code, statistical analyses, graphs and answers to the questions are
 
 The datasets used in this project come from the sources provided in the assignment.
 
-* Data source 1: [snore.txt]
-* Data source 2: [Results.txt]
+* Data snore: [snore.txt]
+* Data results 2: [Results.txt]
 
 ## Scientific references
 
