@@ -1,0 +1,3 @@
+# What is a median? A mean?
+
+The **mean** is the sum of all observations divided by the number of observations. The **median** is the middle value when the observations are ordered.(1)
