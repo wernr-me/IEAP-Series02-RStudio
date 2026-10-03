@@ -15,7 +15,7 @@ jupyter: python3
 **Authors:**
 DEEMUA Charles Sam, NASIR Shakir and BINCHE Werner
 
-**Date:** October 2026
+**Date:** October/2026
 
 ## GitHub repository
 
