@@ -51,3 +51,9 @@ A statistical test involves the risk of making an error: a Type I error occurs w
 # What is the difference between a paired and an unpaired test?
 
 A paired test compares related observations, such as measurements taken before and after treatment in the same individuals, whereas an unpaired test compares independent groups of individuals.(2)
+
+
+**Reference:** 
+(1)https://www.britannica.com/science/statistics/Numerical-measures
+(2)Educationanddebate. Thesearchforevidenceofeffectivehealthpromotion. VivSpeller,AlysonLearmonth,DHarrison
+(3)BMJ 2009;338:a3167
