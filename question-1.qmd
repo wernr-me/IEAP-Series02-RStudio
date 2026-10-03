@@ -46,3 +46,8 @@ The p-value is the probability of obtaining results at least as extreme as those
 # What is the risk of error when using a statistical test?
 
 A statistical test involves the risk of making an error: a Type I error occurs when a true null hypothesis is rejected, while a Type II error occurs when a false null hypothesis is not rejected.(1)
+
+
+# What is the difference between a paired and an unpaired test?
+
+A paired test compares related observations, such as measurements taken before and after treatment in the same individuals, whereas an unpaired test compares independent groups of individuals.(2)
