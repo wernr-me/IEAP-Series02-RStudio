@@ -31,3 +31,8 @@ A parametric test relies on assumptions about the distribution and parameters of
 # What are the assumptions of parametric tests?
 
 Common assumptions include an appropriate measurement scale, independence of observations, approximate normality of the data or residuals, and, for some tests, similar variances between groups.(3)
+
+
+# What are the assumptions of non-parametric tests?
+
+Non-parametric tests generally require fewer distributional assumptions, but they still require assumptions such as independence of observations and an appropriate study design.(1)
