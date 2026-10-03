@@ -1,0 +1,132 @@
+---
+title: "Effect of Treatment Over Time"
+format: html
+Author: Muhammad Shakir Nasir 
+---
+
+# 2.2 Effect of Treatment Over Time
+
+## 2.2.1 The Data
+
+### Description of the Dataset:
+
+The dataset contains performance measurements recorded at two different time points: before and after treatment. It includes two variables: performance (`perf`) and time (`time`).
+
+### Description of the Measured Variables
+
+| Variable | Description | Unit | Possible values | Expected change |
+|----|----|----|----|----|
+| perf | Performance measurement | Not specified | Numerical values | Expected to increase after treatment |
+| time | Measurement time | Not applicable | Before, After | Not applicable |
+
+## 2.2.2 The Analysis
+
+### Research Question
+
+Does performance differ before and after treatment?
+
+**Null Hypothesis (H0):** There is no significant difference in performance before and after treatment.
+
+**Alternative Hypothesis (H1):** There is a significant difference in performance before and after treatment.
+
+### Descriptive Statistics
+
+```{r}
+# Import the dataset
+data <- read.csv("DATA/PrePost.csv")
+
+# Display the dataset
+data
+
+# Check the structure
+str(data)
+
+# Check the number of observations
+nrow(data)
+```
+
+```{r}
+# Count observations in each time condition
+table(data$time)
+
+# Descriptive statistics for each condition
+by(data$perf, data$time, summary)
+
+# Standard deviation for each condition
+by(data$perf, data$time, sd)
+```
+
+The dataset includes 8 measurements before treatment and 8 measurements after treatment.
+
+The mean performance before treatment was 135.1, while the mean performance after treatment was 137.6.
+
+The median increased from 135.5 before treatment to 137.5 after treatment.
+
+The standard deviation was 6.20 before treatment and 7.01 after treatment.
+
+Overall, the descriptive statistics show an increase in average performance after treatment.
+
+### Statistical Test
+
+```{r}
+# Separate Before and After measurements
+before <- data$perf[data$time == "Before"]
+after <- data$perf[data$time == "After"]
+
+# Calculate individual differences
+differences <- after - before
+
+# Display paired differences
+differences
+
+# Descriptive statistics of differences
+summary(differences)
+
+# Check normality of paired differences
+shapiro.test(differences)
+
+# Visualise normality
+qqnorm(differences)
+qqline(differences, col = "red")
+
+```
+
+```{r}
+# Perform paired t-test
+paired_test <- t.test(after, before, paired = TRUE)
+
+# Display the results
+paired_test
+```
+
+### Data Visualization
+
+```{r}
+data$time <- factor(data$time,
+                    levels = c("Before", "After"))
+
+boxplot(perf ~ time,
+        data = data,
+        main = "Performance Before and After Treatment",
+        xlab = "Time",
+        ylab = "Performance",
+        col = c("lightgreen", "lightblue"),
+        ylim = c(125, 148),
+        yaxt = "n")
+
+axis(2, at = seq(125, 145, by = 5), las = 1)
+```
+
+### Interpretation of Results
+
+The descriptive statistics showed an increase in mean performance from 135.1 before treatment to 137.6 after treatment, representing an average increase of 2.5 units.
+
+The Shapiro-Wilk test was performed on the paired differences to assess normality. The result was not statistically significant (W = 0.899, p = 0.2828), meaning that there was insufficient evidence to reject the normality assumption.
+
+A paired-samples t-test was therefore conducted to compare performance before and after treatment. The test showed a statistically significant difference between the two measurements (t(7) = 5.4006, p = 0.001008).
+
+The mean difference was 2.5 units, with a 95% confidence interval ranging from 1.4054 to 3.5946. These results indicate that performance was significantly higher after treatment.
+
+### Conclusion
+
+The aim of this analysis was to investigate whether rehabilitation treatment was associated with a change in performance over time. The results showed that the mean performance increased from 135.1 before treatment to 137.6 after treatment, representing an average increase of 2.5 units. The paired t-test confirmed that this difference was statistically significant (t(7) = 5.4006, p = 0.001008). Therefore, the null hypothesis was rejected in favour of the alternative hypothesis. These findings suggest that participants' performance was higher after treatment. However, since the analysis included only eight participants and no control group is described, further research with a larger sample and an appropriate comparison group would be useful to confirm the findings and assess whether the improvement can be attributed to the treatment.
