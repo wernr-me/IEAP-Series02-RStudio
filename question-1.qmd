@@ -2,10 +2,17 @@
 
 The **mean** is the sum of all observations divided by the number of observations. The **median** is the middle value when the observations are ordered.(1)
 
+
 # What is a variance? A standard deviation?
 
 The **variance** measures the dispersion of the data around the mean, while the **standard deviation** is the square root of the variance and is expressed in the same unit as the data.(1)
 
+
 # What is a normal distribution?
 
 A **normal distribution** is a symmetric, bell-shaped probability distribution in which most observations are close to the mean and fewer observations are found further away from it.(1)
+
+
+# What is a statistical test?
+
+A statistical test is a method used to determine whether the observed data provide enough evidence to reject a null hypothesis about a population.(1)
