@@ -1,0 +1,57 @@
+---
+title: "Effect of Treatment Over Time"
+format: html
+Author: Muhammad Shakir Nasir 
+---
+
+# 2.2 Effect of Treatment Over Time
+
+## 2.2.1 The Data
+
+### Description of the Dataset:
+
+The dataset contains performance measurements recorded at two different time points: before and after treatment. It includes two variables: performance (`perf`) and time (`time`).
+
+### Description of the Measured Variables
+
+| Variable | Description | Unit | Possible values | Expected change |
+|----|----|----|----|----|
+| perf | Performance measurement | Not specified | Numerical values | May increase after treatment |
+| time | Measurement time | Not applicable | Before, After | Not applicable |
+
+## 2.2.2 The Analysis
+
+### Research Question
+Does performance differ before and after treatment?
+### Descriptive Statistics
+```{r}
+# Import the dataset
+data <- read.csv("DATA/PrePost.csv")
+
+# Display the dataset
+data
+
+# Check the structure
+str(data)
+
+# Check the number of observations
+nrow(data)
+```
+
+```{r}
+# Count observations in each time condition
+table(data$time)
+
+# Descriptive statistics for each condition
+by(data$perf, data$time, summary)
+
+# Standard deviation for each condition
+by(data$perf, data$time, sd)
+```
+### Statistical Test
+
+### Data Visualization
+
+### Interpretation of Results
+
+### Conclusion
