@@ -21,3 +21,8 @@ A statistical test is a method used to determine whether the observed data provi
 # When to use a statistical test?
 
 A statistical test is used when we want to determine whether an observed difference or relationship is likely to reflect a real effect rather than random variation in the sample.(2)
+
+
+# What is a parametric test? A non-parametric test?
+
+A parametric test relies on assumptions about the distribution and parameters of the data, whereas a non parametric test makes fewer assumptions about the underlying distribution and often uses the ranks of the observations.(3)
