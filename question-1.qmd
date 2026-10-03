@@ -26,3 +26,8 @@ A statistical test is used when we want to determine whether an observed differe
 # What is a parametric test? A non-parametric test?
 
 A parametric test relies on assumptions about the distribution and parameters of the data, whereas a non parametric test makes fewer assumptions about the underlying distribution and often uses the ranks of the observations.(3)
+
+
+# What are the assumptions of parametric tests?
+
+Common assumptions include an appropriate measurement scale, independence of observations, approximate normality of the data or residuals, and, for some tests, similar variances between groups.(3)
