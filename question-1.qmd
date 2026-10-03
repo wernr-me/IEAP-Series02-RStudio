@@ -41,3 +41,8 @@ Non-parametric tests generally require fewer distributional assumptions, but the
 # What is a p-value?
 
 The p-value is the probability of obtaining results at least as extreme as those observed, assuming that the null hypothesis is true.(1)
+
+
+# What is the risk of error when using a statistical test?
+
+A statistical test involves the risk of making an error: a Type I error occurs when a true null hypothesis is rejected, while a Type II error occurs when a false null hypothesis is not rejected.(1)
