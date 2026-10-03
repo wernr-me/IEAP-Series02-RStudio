@@ -1,14 +1,10 @@
 ---
 title: "IEAP-2026 Series 02 RStudio Assignment"
----
-
----
-title: "IEAP-Series02-Rstudio"
 format: typst
 jupyter: python3
 ---
 
-# IEAP-Series02-RStudio
+
 
 ## Authors and date
 
