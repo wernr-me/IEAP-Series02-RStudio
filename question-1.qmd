@@ -36,3 +36,8 @@ Common assumptions include an appropriate measurement scale, independence of obs
 # What are the assumptions of non-parametric tests?
 
 Non-parametric tests generally require fewer distributional assumptions, but they still require assumptions such as independence of observations and an appropriate study design.(1)
+
+
+# What is a p-value?
+
+The p-value is the probability of obtaining results at least as extreme as those observed, assuming that the null hypothesis is true.(1)
