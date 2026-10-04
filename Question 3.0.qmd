@@ -1,0 +1,214 @@
+---
+title: "Question 3.0"
+author: "Charles Sam Deemua"
+format: html
+editor: visual
+---
+
+## 2.3 Testing stereotypes
+
+### 2.3.1 The data
+
+```{r}
+snore_data <- read.delim("Data/snore.txt")
+
+head(snore_data)
+str(snore_data)
+
+
+
+```
+
+A brief overview shows the dataset contains 100 observations, with no missing values: 25 women and 75 men, 35 snorers and 65 non-snorers, and 64 smokers and 36 non-smokers.
+
+```{r}
+# data cleaning for test statistics.
+
+# Change H to M in the sex column
+snore_data$sex <- as.character(snore_data$sex)
+snore_data$sex[snore_data$sex == "H"] <- "M"
+snore_data$sex <- factor(snore_data$sex, levels = c("F", "M"))
+
+# Change O to Yes and N to No in snore and tabac
+for (column in c("snore", "tabac")) {
+  values <- as.character(snore_data[[column]])
+  values[values %in% c("O", "yes")] <- "Yes"
+  values[values %in% c("N", "no")] <- "No"
+  snore_data[[column]] <- factor(values, levels = c("No", "Yes"))
+}
+# View the updated table
+head(snore_data)
+```
+
+some changes were further done on the data set. In the The `sex` column **H** was changed to **M** for men, while **F** was retained for women. In `snore` and `tabac`, **O** and **N** were changed to **Yes** and **No** for clarity. Significance threshold of **0.05**. was used. Group comparisons assume independent participants.
+
+A **BMI** column was added using weight (kg) divided by height (m) squared. BMI was included to account for height when answering whether snorers or men are “fatter,” since weight alone does not account for differences in height. BMI remains an indirect measure of body fat.
+
+```{r}
+# Calculating BMI and adding it as a new column
+snore_data$BMI <- snore_data$weight / (snore_data$height / 100)^2
+
+# View the updated data
+head(snore_data)
+
+# Summary of BMI
+summary(snore_data$BMI)
+```
+
+## 2.3.2 The Questions
+
+### 1. Are snorers fatter?
+
+**Null hypothesis:** BMI has the same distribution in snorers and non-snorers. **Alternative hypothesis:** The distributions differ.
+
+```{r}
+# Compare BMI between non-snorers and snorers
+boxplot(BMI ~ snore, data = snore_data,
+        xlab = "Snoring status", ylab = "BMI (kg/m²)",
+        main = "BMI by snoring status",
+        col = c("lightblue", "salmon"))
+
+tapply(snore_data$BMI, snore_data$snore, median)
+
+# Check normality within each group
+by(snore_data$BMI, snore_data$snore, shapiro.test)
+
+# Compare the two independent groups
+wilcox.test(BMI ~ snore, data = snore_data, exact = FALSE)
+```
+
+**Interpretation:** BMI departs from normality in both groups, so we use the Wilcoxon rank-sum test. Median BMI is 28.069 among non-snorers and 28.076 among snorers. The test gives W = 1128.5, p = 0.9510. There is no statistically significant BMI difference; this dataset does not support the claim that snorers are fatter.
+
+### 2. Do snorers drink or smoke more??
+
+**Alcohol consumption**
+
+```{r}
+boxplot(alcool ~ snore, data = snore_data,
+        xlab = "Snoring status", ylab = "Recorded alcohol value",
+        main = "Alcohol consumption by snoring status",
+        col = c("lightblue", "salmon"))
+
+tapply(snore_data$alcool, snore_data$snore, mean)
+tapply(snore_data$alcool, snore_data$snore, median)
+
+by(snore_data$alcool, snore_data$snore, shapiro.test)
+
+wilcox.test(alcool ~ snore, data = snore_data, exact = FALSE)
+```
+
+**Interpretation:** Mean alcohol values are **2.37 among non-snorers** and **4.03 among snorers**, with medians of **0** and **4**, respectively. Alcohol values depart from normality in both groups. The Wilcoxon test gives **W = 788, p = 0.0086**, indicating significantly higher recorded alcohol values among snorers. The alcohol unit and measurement period are unspecified.
+
+**Smoking status**
+
+```{r}
+smoking_by_snore <- table(snore_data$snore, snore_data$tabac)
+smoking_by_snore
+
+# Percentages within each snoring group
+round(100 * prop.table(smoking_by_snore, margin = 1), 1)
+
+barplot(t(prop.table(smoking_by_snore, margin = 1)),
+        beside = TRUE,
+        col = c("lightblue", "salmon"),
+        legend.text = c("Non-smokers", "Smokers"),
+        args.legend = list(x = "topright", bty = "n"),
+        ylim = c(0, 1),
+        xlab = "Snoring status", ylab = "Proportion",
+        main = "Smoking status by snoring status")
+
+fisher.test(smoking_by_snore)
+```
+
+**Interpretation:** **57.1% of snorers** and **67.7% of non-snorers** smoke. Fisher’s exact test gives **p = 0.3827**, showing no statistically significant association between snoring and smoking status. The data do not support higher smoking prevalence among snorers. Smoking quantity was not recorded.
+
+### 3. Are men fatter??
+
+**Null hypothesis:** BMI has the same distribution in men and women. **Alternative hypothesis:** The distributions in men is more.
+
+```{r}
+boxplot(BMI ~ sex, data = snore_data,
+        xlab = "Sex", ylab = "BMI (kg/m²)",
+        main = "BMI among women (F) and men (M)",
+        col = c("lightblue", "salmon"))
+
+tapply(snore_data$BMI, snore_data$sex, median)
+
+by(snore_data$BMI, snore_data$sex, shapiro.test)
+
+wilcox.test(BMI ~ sex, data = snore_data, exact = FALSE)
+```
+
+**Interpretation:** BMI departs from normality in both groups. Median BMI is **27.727 among women** and **28.075 among men**. The Wilcoxon test gives **W = 850, p = 0.4884**. Although men have a slightly higher median BMI, the difference is not statistically significant. These data do not support the claim that men are fatter.
+
+### 4. Do women smoke less??
+
+```{r}
+smoking_by_sex <- table(snore_data$sex, snore_data$tabac)
+smoking_by_sex
+
+# Percentages within each sex group
+round(100 * prop.table(smoking_by_sex, margin = 1), 1)
+
+barplot(t(prop.table(smoking_by_sex, margin = 1)),
+        beside = TRUE,
+        col = c("lightblue", "salmon"),
+        legend.text = c("Non-smokers", "Smokers"),
+        args.legend = list(x = "topright", bty = "n"),
+        ylim = c(0, 1),
+        xlab = "Sex", ylab = "Proportion",
+        main = "Smoking status among women (F) and men (M)")
+
+fisher.test(smoking_by_sex)
+```
+
+**Interpretation:** **40% of women** and **72% of men** smoke. Fisher’s exact test gives **p = 0.0073**, indicating a statistically significant association between sex and smoking status. Women are **less likely to smoke in this sample**.
+
+### 5. Are there correlations between variables??
+
+We examine **age, weight, height, alcohol and BMI** using Spearman correlation, which measures monotonic relationships using ranks.
+
+```{r}
+numerical_data <- snore_data[
+  c("age", "weight", "height", "alcool", "BMI")
+]
+
+# Scatterplot matrix
+pairs(numerical_data,
+      main = "Relationships between numerical variables",
+      pch = 19, col = "steelblue")
+
+# Spearman correlation matrix
+round(cor(numerical_data, method = "spearman"), 3)
+
+# Test each pair
+variable_pairs <- combn(names(numerical_data), 2, simplify = FALSE)
+
+correlation_results <- do.call(
+  rbind,
+  lapply(variable_pairs, function(pair) {
+    test <- cor.test(
+      numerical_data[[pair[1]]],
+      numerical_data[[pair[2]]],
+      method = "spearman",
+      exact = FALSE
+    )
+    
+    data.frame(
+      Variable_1 = pair[1],
+      Variable_2 = pair[2],
+      rho = unname(test$estimate),
+      p_value = test$p.value
+    )
+  })
+)
+
+# Adjust for the ten correlation tests
+correlation_results$p_Holm <- p.adjust(
+  correlation_results$p_value, method = "holm"
+)
+
+knitr::kable(correlation_results, digits = 4)
+```
+
+**Interpretation:** Weight and height have a **very strong positive association**. BMI also has positive associations with weight and height. These three correlations remain significant after Holm adjustment for the ten tests. However, BMI is calculated from weight and height, so its relationships with them are partly mathematical. No other numerical pair shows a statistically significant correlation.
