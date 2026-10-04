@@ -1,7 +1,7 @@
 ---
 title: "Question 3.0"
 author: "Charles Sam Deemua"
-format: html
+format: gfm
 editor: visual
 ---
 
